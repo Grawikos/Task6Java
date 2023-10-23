@@ -111,7 +111,7 @@ class Company extends TelephoneEntry {
 
     @Override
     public String description() {
-        return "Company: " + companyName + ", Address: " + address + ", Phone: " + getTelephoneNumber().getCountryCode() + "-" + getTelephoneNumber().getLocalNumber();
+        return "Company: " + companyName + ", Address: " + address.streetName + " " + address.streetNum + ", Phone: " + getTelephoneNumber().getCountryCode() + "-" + getTelephoneNumber().getLocalNumber();
     }
 
     public String getCompanyName() {
@@ -137,7 +137,7 @@ class Main{
         Person p2 = new Person("Bartosz", "Czekaj", new Address("Piotrkowska", 321), new TelephoneNumber("+47", "000 000 000"));
         Person p3 = new Person("Jan", "Kowalski", new Address("Narutowicza", 25), new TelephoneNumber("+11", "333 666 999"));
         Company c1 = new Company("Polex", new Address("Rzgowska", 100), new TelephoneNumber("+48", "222 222 222"));
-        Company c2 = new Company("Gerex", new Address("Władysławowska", 456), new TelephoneNumber("+48", "333 333 333"));
+        Company c2 = new Company("Gerex", new Address("Wladyslawowska", 456), new TelephoneNumber("+48", "333 333 333"));
         Company c3 = new Company("Mepex", new Address("Rzgowska", 159), new TelephoneNumber("+48", "444 444 444"));
         TreeMap<TelephoneNumber, TelephoneEntry> tMap = new TreeMap<>();
         tMap.put(p1.getTelephoneNumber(), p1);
