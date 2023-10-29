@@ -1,6 +1,5 @@
 import java.util.TreeMap;
 import java.util.Iterator;
-import java.util.Set;
 
 class TelephoneNumber implements Comparable<TelephoneNumber> {
     private String countryCode;
@@ -13,8 +12,12 @@ class TelephoneNumber implements Comparable<TelephoneNumber> {
 
     @Override
     public int compareTo(TelephoneNumber other) {
-        return this.localNumber.compareTo(other.localNumber);
+    int countryCodeComparison = this.countryCode.compareTo(other.countryCode);
+    if (countryCodeComparison != 0) {
+        return countryCodeComparison;
     }
+    return this.localNumber.compareTo(other.localNumber);
+}
 
     public String getCountryCode() {
         return countryCode;
@@ -71,7 +74,9 @@ class Person extends TelephoneEntry {
 
     @Override
     public String description() {
-        return "Person: " + firstName + " " + lastName + ", Address: " + address.streetName + " " + address.streetNum + ", Phone: " + getTelephoneNumber().getCountryCode() + "-" + getTelephoneNumber().getLocalNumber();
+        return "Person: " + firstName + " " + lastName + ", Address: " + 
+                address.streetName + " " + address.streetNum + ", Phone: " + 
+                getTelephoneNumber().getCountryCode() + "-" + getTelephoneNumber().getLocalNumber();
     }
 
     public String getFirstName() {
@@ -111,7 +116,9 @@ class Company extends TelephoneEntry {
 
     @Override
     public String description() {
-        return "Company: " + companyName + ", Address: " + address.streetName + " " + address.streetNum + ", Phone: " + getTelephoneNumber().getCountryCode() + "-" + getTelephoneNumber().getLocalNumber();
+        return "Company: " + companyName + ", Address: " + address.streetName + 
+                " " + address.streetNum + ", Phone: " + getTelephoneNumber().getCountryCode() 
+                + "-" + getTelephoneNumber().getLocalNumber();
     }
 
     public String getCompanyName() {
@@ -131,7 +138,7 @@ class Company extends TelephoneEntry {
     }
 }
 
-class Main{
+class TelephoneBook{
     public static void main(String[] args) {
         Person p1 = new Person("Marcin", "Grawinski", new Address("Politechniki", 1), new TelephoneNumber("+48", "123 456 789"));
         Person p2 = new Person("Bartosz", "Czekaj", new Address("Piotrkowska", 321), new TelephoneNumber("+47", "000 000 000"));
